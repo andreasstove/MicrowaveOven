@@ -1,13 +1,11 @@
 using NUnit.Framework;
 
+
 namespace Microwave.Test.Integration
 {
     public class Tests
     {
-        //wupti
-        //love love
-        //Test
-        //heri kan der laves et setup der køres hver gang inden test.
+        
         [SetUp]
         public void Setup()
         {

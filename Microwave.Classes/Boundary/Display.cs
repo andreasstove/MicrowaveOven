@@ -8,7 +8,8 @@ namespace Microwave.Classes.Boundary
 
         public Display(IOutput output)
         {
-            myOutput = output;
+            int ja = 2;
+            System.Console.WriteLine("hej [0]", ja);
         }
 
         public void ShowTime(int min, int sec)
