@@ -23,27 +23,23 @@ namespace Microwave.Test.Integration
         }
         //test
         [Test]
-        public void Test1()
+        public void TestForTurnOn()
         {
             power.TurnOn(1);
             StringAssert.Contains("PowerTube works with 1", stringWriter.ToString());
         }
         [Test]
-        public void Test2()
+        public void TestForTurnOnTurnOff()
         {
-            //Hejhej
-            Assert.Pass();
+            power.TurnOn(1);
+            power.TurnOff();
+            StringAssert.Contains("PowerTube turned off", stringWriter.ToString());
         }
         [Test]
-        public void Test3()
+        public void TurnOff()
         {
-            Assert.Pass();
-        }
-        [Test]
-        public void Test4()
-        {
-            var hej = 4;
-            Assert.That(hej, Is.EqualTo(4));
+            power.TurnOff();
+            StringAssert.DoesNotContain("PowerTube turned off", stringWriter.ToString());
         }
     }
 }
