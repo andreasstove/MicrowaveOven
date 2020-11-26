@@ -25,7 +25,6 @@ namespace Microwave.Classes.Boundary
             {
                 throw new ApplicationException("PowerTube.TurnOn: is already on");
             }
-
             myOutput.OutputLine($"PowerTube works with {power}");
             IsOn = true;
         }

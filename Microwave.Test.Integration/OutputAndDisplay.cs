@@ -11,14 +11,14 @@ namespace Microwave.Test.Integration
     {
         private Display _display;
         private IOutput _output;
-        private System.IO.StringWriter _text;
+        private System.IO.StringWriter _stringWriter;
         [SetUp]
         public void Setup()
         {
             _output = new Output();
             _display = new Display(_output);
-            _text = new System.IO.StringWriter();
-            Console.SetOut(_text);
+            _stringWriter = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter);
         }
         //test
         [Test]
@@ -28,7 +28,7 @@ namespace Microwave.Test.Integration
             int sec = 5;
             var expected = "Display shows: 10:05";
             _display.ShowTime(min, sec);
-            StringAssert.Contains(expected, _text.ToString());
+            StringAssert.Contains(expected, _stringWriter.ToString());
         }
         [Test]
         public void ShowPower_Called_OutputLine()
@@ -36,14 +36,14 @@ namespace Microwave.Test.Integration
             int power = 20;
             var expected = "Display shows: 20 W";
             _display.ShowPower(power);
-            StringAssert.Contains(expected, _text.ToString());
+            StringAssert.Contains(expected, _stringWriter.ToString());
         }
         [Test]
         public void Clear_Called_OutputLine()
         {
             var expected = "Display cleared";
             _display.Clear();
-            StringAssert.Contains(expected, _text.ToString());
+            StringAssert.Contains(expected, _stringWriter.ToString());
         }
     }
 }
