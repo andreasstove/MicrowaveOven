@@ -12,25 +12,21 @@ namespace Microwave.Test.Integration
     {
         private IOutput output;
         private PowerTube power;
+        private System.IO.StringWriter stringWriter;
         [SetUp]
         public void Setup()
         {
             output = new Output();
             power = new PowerTube(output);
+            stringWriter = new System.IO.StringWriter();
+            Console.SetOut(stringWriter);
         }
         //test
         [Test]
         public void Test1()
         {
-            //var text = new System.IO.TextWriter("Text");
-            //string text = "Text";
-            var hej = "PowerTube works with 1";
-            
-            int number = 1;
             power.TurnOn(1);
-            output.Received(1).OutputLine(hej);
-            //Console.SetOut(System.IO.TextWriter(text));
-            //output.Received(1).OutputLine("Display shows:{0}", number);
+            StringAssert.Contains("PowerTube works with 1", stringWriter.ToString());
         }
         [Test]
         public void Test2()
