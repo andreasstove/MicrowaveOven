@@ -11,10 +11,10 @@ namespace Microwave.Test.Integration
 {
     class CookControllerAndDisplay
     {
-        private IOutput _output;
-        private IPowerTube _powerTube;
-        private IDisplay _display;
-        private ICookController _cookController;
+        private Output _output;
+        private PowerTube _powerTube;
+        private Display _display;
+        private CookController _cookController;
       
         private System.IO.StringWriter _stringWriter;
 
@@ -35,12 +35,11 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnTimerTick_called_myDisplay()
         {
-            string expected = "Display shows: 00:00";
+            string expected = "Display shows: 02: 00";
             int power = 20;
-            int time = 11;
-
+            int time = 120;
+            
             _cookController.StartCooking(power, time);
-           
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
             _timer.TimerTick += Raise.Event();
