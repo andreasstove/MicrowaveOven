@@ -182,6 +182,38 @@ namespace Microwave.Test.Integration
             StringAssert.DoesNotContain("61", stringWriter.ToString());
         }
 
+        [Test]
+        public void TestForStartButtonPressedAfterPower()
+        {
+            powerButton.Pressed += Raise.Event();
+
+            cancelButton.Pressed += Raise.Event();
+            //brug cleared når det er clear display
+            StringAssert.Contains("cleared", stringWriter.ToString());
+        }
+
+        [Test]
+        public void TestForStartButtonPressedBefore()
+        {
+            powerButton.Pressed += Raise.Event();
+
+            cancelButton.Pressed += Raise.Event();
+            //brug cleared når det er clear display
+            StringAssert.DoesNotContain("cleared", stringWriter.ToString());
+        }
+
+
+        [Test]
+        public void TestForStartButtonPressedAfterCooking()
+        {
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            cancelButton.Pressed += Raise.Event();
+            //brug cleared når det er clear display
+            StringAssert.Contains("cleared", stringWriter.ToString());
+        }
+
+
 
     }
 }
