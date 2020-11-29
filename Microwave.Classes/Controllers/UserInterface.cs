@@ -94,7 +94,7 @@ namespace Microwave.Classes.Controllers
                     break;
                 case States.COOKING:
                     ResetValues();
-                    myCooker.Stop();
+                    myCooker.Stop();    
                     myLight.TurnOff();
                     myDisplay.Clear();
                     myState = States.READY;
