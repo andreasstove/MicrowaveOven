@@ -199,7 +199,7 @@ namespace Microwave.Test.Integration
 
             cancelButton.Pressed += Raise.Event();
             //brug cleared når det er clear display
-            StringAssert.DoesNotContain("cleared", stringWriter.ToString());
+            StringAssert.Contains("cleared", stringWriter.ToString());
         }
 
 
@@ -209,11 +209,21 @@ namespace Microwave.Test.Integration
             powerButton.Pressed += Raise.Event();
             timeButton.Pressed += Raise.Event();
             cancelButton.Pressed += Raise.Event();
+            cancelButton.Pressed += Raise.Event();
             //brug cleared når det er clear display
             StringAssert.Contains("cleared", stringWriter.ToString());
         }
 
-
+        [Test]
+        public void TestForTimerExpired()
+        {
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            cancelButton.Pressed += Raise.Event();
+            userInterface.CookingIsDone();
+            //brug cleared når det er clear display
+            StringAssert.Contains("cleared", stringWriter.ToString());
+        }
 
     }
 }
