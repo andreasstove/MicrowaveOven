@@ -42,7 +42,6 @@ namespace Microwave.Test.Integration
             _cookController.StartCooking(power, time);
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
-            _timer.TimerTick += Raise.Event();
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
        
