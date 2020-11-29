@@ -105,6 +105,82 @@ namespace Microwave.Test.Integration
             powerButton.Pressed += Raise.Event();
             StringAssert.Contains("50", stringWriter.ToString());
         }
+        [Test]
+        public void TestForPowerButtun3PressedOnTheDisplay()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                powerButton.Pressed += Raise.Event();
+            }
+            StringAssert.Contains("150", stringWriter.ToString());
+        }
+        [Test]
+        public void TestForPowerButtun14PressedOnTheDisplay()
+        {
+            for (int i = 0; i < 14; i++)
+            {
+                powerButton.Pressed += Raise.Event();
+            }
+     
+            StringAssert.Contains("700", stringWriter.ToString());
+        }
+        [Test]
+        public void TestForPowerButtun15PressedOnTheDisplay()
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                powerButton.Pressed += Raise.Event();
+            }
+
+            StringAssert.Contains("50", stringWriter.ToString());
+        }
+
+
+        [Test]
+        public void TestForTimeButtunPressedOnTheDisplay()
+        {
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+
+
+            StringAssert.Contains("1", stringWriter.ToString());
+        }
+
+        [Test]
+        public void TestForTimeButtun5PressedOnTheDisplay()
+        {
+            powerButton.Pressed += Raise.Event();
+            for (int i = 0; i < 5; i++)
+            {
+                timeButton.Pressed += Raise.Event();
+            }
+
+            StringAssert.Contains("5", stringWriter.ToString());
+        }
+
+        [Test]
+        public void TestForTimeButtun60PressedOnTheDisplay()
+        {
+            powerButton.Pressed += Raise.Event();
+            for (int i = 0; i < 60; i++)
+            {
+                timeButton.Pressed += Raise.Event();
+            }
+
+            StringAssert.Contains("60", stringWriter.ToString());
+        }
+
+        [Test]
+        public void TestForTimeButtun61PressedOnTheDisplay()
+        {
+            powerButton.Pressed += Raise.Event();
+            for (int i = 0; i < 61; i++)
+            {
+                timeButton.Pressed += Raise.Event();
+            }
+            //Her viser den 61 istedet for at gå til 1 minut
+            StringAssert.DoesNotContain("61", stringWriter.ToString());
+        }
 
 
     }
