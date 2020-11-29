@@ -63,6 +63,7 @@ namespace Microwave.Classes.Controllers
 
         public void OnTimerTick(object sender, EventArgs e)
         {
+            
             if (isCooking)
             {
                 int remaining = myTimer.TimeRemaining;
