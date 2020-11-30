@@ -15,6 +15,8 @@ namespace Microwave.Test.Integration
         private Display display;
         private PowerTube powerTube;
         private UserInterface userInterface;
+
+        //stubs
         private IDoor door;
         private ILight light;
         private ICookController cookController;

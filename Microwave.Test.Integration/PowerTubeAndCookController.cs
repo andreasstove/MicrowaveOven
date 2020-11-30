@@ -8,14 +8,15 @@ using Microwave.Classes.Boundary;
 using NSubstitute;
 namespace Microwave.Test.Integration
 {
+    //Done
     [TestFixture]
     class PowerTubeAndCookController
     {
-        private ICookController _cookController;
-        private IPowerTube _powerTube;
-        private IDisplay _display;
+        private CookController _cookController;
+        private PowerTube _powerTube;
+        private Display _display;
         private ITimer _timer;
-        private IOutput _output;
+        private Output _output;
         private System.IO.StringWriter _stringWriter;
         [SetUp]
         public void Setup()
@@ -28,7 +29,6 @@ namespace Microwave.Test.Integration
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
         }
-        //test
         [TestCase(1)]
         [TestCase(50)]
         [TestCase(100)]
@@ -39,5 +39,6 @@ namespace Microwave.Test.Integration
             string expected = ($"PowerTube works with {power}");
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
+
     }
 }

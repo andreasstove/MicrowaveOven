@@ -11,11 +11,11 @@ namespace Microwave.Test.Integration
     class LightAndUserInterface
     {
         //real
-        private IOutput _output;
-        private IPowerTube _powerTube;
-        private IDisplay _display;
-        private ILight _light;
-        private IUserInterface _userInterface;
+        private Output _output;
+        private PowerTube _powerTube;
+        private Display _display;
+        private Light _light;
+        private UserInterface _userInterface;
 
         private System.IO.StringWriter _stringWriter;
 

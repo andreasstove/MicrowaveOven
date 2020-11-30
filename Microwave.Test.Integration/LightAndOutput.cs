@@ -8,9 +8,10 @@ using NSubstitute;
 
 namespace Microwave.Test.Integration
 {
+    //Done
     class OutputLight
     {
-        private IOutput output;
+        private Output output;
         private Light light;
         private System.IO.StringWriter stringWriter;
         [SetUp]
