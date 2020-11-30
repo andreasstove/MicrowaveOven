@@ -25,11 +25,7 @@ namespace Microwave.Test.Integration
         private IButton timeButton;
         private IButton cancelButton;
 
-
-
         private System.IO.StringWriter stringWriter;
-
-
         [SetUp]
         public void Setup()
         {
@@ -37,8 +33,6 @@ namespace Microwave.Test.Integration
             display = new Display(output);
             powerTube = new PowerTube(output);
             light = new Light(output);
-
-
 
             cookController = Substitute.For<ICookController>();
             timeButton = Substitute.For<IButton>();
@@ -50,7 +44,6 @@ namespace Microwave.Test.Integration
             Console.SetOut(stringWriter);
             userInterface = new UserInterface(powerButton, timeButton, cancelButton, door, display, light, cookController);
         }
-        //test
         [Test]
         public void TestForDontDoAnyThingForTurnOffInOnStartSetPower()
         {
