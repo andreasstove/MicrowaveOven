@@ -69,7 +69,7 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnDoorOpened_CaseSetPower_TurnOn()
         {
-            //Usikker
+            //Done
             string expected = "Light is turned on";
             _door.Opened += Raise.Event();
             _door.Closed += Raise.Event();
@@ -78,7 +78,22 @@ namespace Microwave.Test.Integration
             Console.SetOut(_stringWriter);
             _door.Opened += Raise.Event();
 
-            StringAssert.DoesNotContain(expected, _stringWriter.ToString());
+            StringAssert.Contains(expected, _stringWriter.ToString());
+        }
+        [Test]
+        public void OnDoorOpened_CaseSetTime_TurnOn()
+        {
+            string expected = "Light is turned on";
+            _door.Opened += Raise.Event();
+            _door.Closed += Raise.Event();
+            _powerButton.Pressed += Raise.Event();
+            
+            _timeButton.Pressed += Raise.Event();
+            _stringWriter = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter);
+            _door.Opened += Raise.Event();
+
+            StringAssert.Contains(expected, _stringWriter.ToString());
         }
 
         [Test]
@@ -128,22 +143,6 @@ namespace Microwave.Test.Integration
 
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
-        
-      
-        [Test]
-        public void OnDoorOpened_CaseSetTime_TurnOn()
-        {
-            string expected = "Light is turned on";
-            _powerButton.Pressed += Raise.Event();
-            _timeButton.Pressed += Raise.Event();
-            _stringWriter = new System.IO.StringWriter();
-            Console.SetOut(_stringWriter);
-            _door.Opened += Raise.Event();
-
-            StringAssert.Contains(expected, _stringWriter.ToString());
-        }
-  
-
         [Test]
         public void CookingIsDone_CaseCooking_TurnOff()
         {
@@ -157,7 +156,5 @@ namespace Microwave.Test.Integration
 
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
-
-
     }
 }
