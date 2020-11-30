@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using Microwave.Classes.Boundary;
+﻿using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
 using Microwave.Classes.Interfaces;
-using System.Threading;
 using NSubstitute;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
 
 namespace Microwave.Test.Integration
 {
-    class CookControllerAndTimer
+    class TimerAndCookController
     {
         private Output _output;
         private PowerTube _powerTube;
@@ -37,25 +37,29 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void StartCooking_Called_Start()
-        {
-            int power = 50;
-            int time = 1000;
-            _cookController.StartCooking(power, time);
-            Assert.That(_timer.TimeRemaining, Is.EqualTo(time));
-        }
-        [Test]
-        public void Stop_Called_Stop()
+        public void OnTimerTick_Called_ShowTime()
         {
             int power = 100;
-            int time = 5000;
-            int sleepingTime = 3000;
+            int time = 10000;
+            int sleepingTime = 4000;
+            string expected = $"Display shows: {(time-(sleepingTime/1000)+1) / 60:D2}:{(time - (sleepingTime/1000)+1) % 60:D2}";
+
             _cookController.StartCooking(power, time);
             Thread.Sleep(sleepingTime);
-            _cookController.Stop();
-            Thread.Sleep(2000);
-            int expected = time-(sleepingTime / 1000);
-            Assert.That(_timer.TimeRemaining, Is.EqualTo(expected));
+            StringAssert.Contains(expected, _stringWriter.ToString());
+        }
+        [Test]
+        public void OnTimerExpired_Called_TurnOff()
+        {
+            int power = 100;
+            int time = 6000;
+            int sleepingTime = 7000;
+            string expected = "PowerTube turned off";
+
+            _cookController.StartCooking(power, time);
+            Thread.Sleep(sleepingTime);
+
+            StringAssert.Contains(expected, _stringWriter.ToString());
         }
     }
 }
