@@ -15,7 +15,6 @@ namespace Microwave.Test.Integration
         private PowerTube _powerTube;
         private Display _display;
         private CookController _cookController;
-      
         private System.IO.StringWriter _stringWriter;
 
         //stubs
@@ -35,15 +34,16 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnTimerTick_called_myDisplay()
         {
-            string expected = "Display shows: 02: 00";
-            int power = 20;
-            int time = 12090;
+            string expected = "Display shows: 02:00";
+            int power = 50;
+            int time = 120;
             _cookController.StartCooking(power, time);
+
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
-            _timer.TimerTick += Raise.Event();
+            _timer.TimeRemaining.Returns(120);
+            _timer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
-       
     }
 }
