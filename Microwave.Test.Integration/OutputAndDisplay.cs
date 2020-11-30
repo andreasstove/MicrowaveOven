@@ -6,11 +6,12 @@ using Microwave.Classes.Interfaces;
 using Microwave.Classes.Boundary;
 namespace Microwave.Test.Integration
 {
+    //Done
     [TestFixture]
     class OutputAndDisplay
     {
         private Display _display;
-        private IOutput _output;
+        private Output _output;
         private System.IO.StringWriter _stringWriter;
         [SetUp]
         public void Setup()

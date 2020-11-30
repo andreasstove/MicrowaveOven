@@ -16,12 +16,17 @@ namespace Microwave.Test.Integration
         private Display display;
         private PowerTube powerTube;
         private UserInterface userInterface;
-        private IDoor door;
         private Light light;
+
+        //Stubs
+        private IDoor door;
         private ICookController cookController;
         private IButton powerButton;
         private IButton timeButton;
         private IButton cancelButton;
+
+
+
         private System.IO.StringWriter stringWriter;
 
 
@@ -54,10 +59,6 @@ namespace Microwave.Test.Integration
             cancelButton.Pressed += Raise.Event();
             StringAssert.DoesNotContain("Light is turned off", stringWriter.ToString());
         }
-
-
-
-
 
         [Test]
         public void TestForTurnLightOnSettimeStartPressed()

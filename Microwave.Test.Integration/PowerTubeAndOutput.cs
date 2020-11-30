@@ -8,9 +8,10 @@ using NSubstitute;
 
 namespace Microwave.Test.Integration
 {
+    //Done
     class PowerTubeAndOutput
     {
-        private IOutput output;
+        private Output output;
         private PowerTube power;
         private System.IO.StringWriter stringWriter;
         [SetUp]
