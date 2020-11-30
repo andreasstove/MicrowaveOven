@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    class UserInterFaceCookController
+    class CancelButtonUserInterFace
     {
         //real
         private Output _output;
@@ -19,15 +19,15 @@ namespace Microwave.Test.Integration
         private UserInterface _userInterface;
         private CookController _cookController;
         private Timer _timer;
-
+        private Button _powerButton;
+        private Button _timeButton;
+        private Button _cancelButton;
         private System.IO.StringWriter _stringWriter;
 
         //stubs
 
         private IDoor _door;
-        private IButton _powerButton;
-        private IButton _timeButton;
-        private IButton _cancelButton;
+
 
         [SetUp]
         public void Setup()
@@ -37,12 +37,13 @@ namespace Microwave.Test.Integration
             _display = new Display(_output);
             _light = new Light(_output);
             _timer = new Timer();
-
+            _powerButton = new Button();
+            _timeButton = new Button();
+            _cancelButton = new Button();
             _cookController = new CookController(_timer, _display, _powerTube);
             _door = Substitute.For<IDoor>();
-            _powerButton = Substitute.For<IButton>();
-            _timeButton = Substitute.For<IButton>();
-            _cancelButton = Substitute.For<IButton>();
+
+
             _userInterface = new UserInterface(_powerButton, _timeButton, _cancelButton, _door, _display, _light, _cookController);
             _cookController.UI = _userInterface;
             _stringWriter = new System.IO.StringWriter();
@@ -50,15 +51,39 @@ namespace Microwave.Test.Integration
 
         }
 
+
         [Test]
-        public void OnTimerExpiredWithUserInterFace()
+        public void CancelButtonInSetPowerStateUserInterFace()
         {
-            _powerButton.Pressed += Raise.Event();
-            _timeButton.Pressed += Raise.Event();
-            _cancelButton.Pressed += Raise.Event();
-            //_timer.TimerTick += Raise.Event();
-            //_cookController.OnTimerExpired;
-            StringAssert.Contains("Light is turned off", _stringWriter.ToString());
+            _door.Opened += Raise.Event();
+            _door.Closed += Raise.Event();
+            _powerButton.Press();
+            _cancelButton.Press();
+            StringAssert.Contains("Display cleared", _stringWriter.ToString());
         }
+
+        [Test]
+        public void CancelButtonInSetTimeStateUserInterFace()
+        {
+            _door.Opened += Raise.Event();
+            _door.Closed += Raise.Event();
+            _powerButton.Press();
+            _timeButton.Press();
+            _cancelButton.Press();
+            StringAssert.Contains("50 W", _stringWriter.ToString());
+        }
+
+        [Test]
+        public void CancelButtonInSetCookingStateUserInterFace()
+        {
+            _door.Opened += Raise.Event();
+            _door.Closed += Raise.Event();
+            _powerButton.Press();
+            _timeButton.Press();
+            _cancelButton.Press();
+            _cancelButton.Press();
+            StringAssert.Contains("Display cleared", _stringWriter.ToString());
+        }
+
     }
 }
