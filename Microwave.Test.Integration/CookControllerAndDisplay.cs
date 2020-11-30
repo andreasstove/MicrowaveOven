@@ -37,11 +37,11 @@ namespace Microwave.Test.Integration
         {
             string expected = "Display shows: 02: 00";
             int power = 20;
-            int time = 120;
-            
+            int time = 12090;
             _cookController.StartCooking(power, time);
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
+            _timer.TimerTick += Raise.Event();
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
        
