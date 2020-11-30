@@ -30,8 +30,8 @@ namespace Microwave.Test.Integration
             _powerTube = new PowerTube(_output);
             _display = new Display(_output);
             _timer = new Classes.Boundary.Timer();
-            //_cookController = new CookController(_timer, _display, _powerTube);
-            _cookController = new CookController(_timer, _display, _powerTube, _userInterface);
+            _cookController = new CookController(_timer, _display, _powerTube);
+            //_cookController = new CookController(_timer, _display, _powerTube, _userInterface);
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
 
