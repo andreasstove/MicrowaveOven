@@ -63,12 +63,9 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnStartCancelPressed_caseSetTimeWithMorePower_TurnOff()
         {
+            for(int i = 0; i < 5; i++)
+                _powerButton.Pressed += Raise.Event();
 
-            _powerButton.Pressed += Raise.Event();
-            _powerButton.Pressed += Raise.Event();
-            _powerButton.Pressed += Raise.Event();
-            _powerButton.Pressed += Raise.Event();
-            _powerButton.Pressed += Raise.Event();
             _timeButton.Pressed += Raise.Event();
             _cancelButton.Pressed += Raise.Event();
 

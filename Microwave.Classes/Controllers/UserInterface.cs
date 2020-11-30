@@ -144,6 +144,7 @@ namespace Microwave.Classes.Controllers
 
         public void CookingIsDone()
         {
+            Console.WriteLine("Hej med dig");
             switch (myState)
             {
                 case States.COOKING:

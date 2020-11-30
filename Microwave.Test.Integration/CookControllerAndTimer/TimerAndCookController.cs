@@ -10,6 +10,7 @@ using System.Threading;
 
 namespace Microwave.Test.Integration
 {
+    [TestFixture]
     class TimerAndCookController
     {
         private Output _output;
@@ -29,7 +30,7 @@ namespace Microwave.Test.Integration
             _powerTube = new PowerTube(_output);
             _display = new Display(_output);
             _timer = new Classes.Boundary.Timer();
-            _cookController = new CookController(_timer, _display, _powerTube);
+            //_cookController = new CookController(_timer, _display, _powerTube);
             _cookController = new CookController(_timer, _display, _powerTube, _userInterface);
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
@@ -41,7 +42,7 @@ namespace Microwave.Test.Integration
         {
             int power = 100;
             int time = 10000;
-            int sleepingTime = 4000;
+            int sleepingTime = 2000;
             string expected = $"Display shows: {(time-(sleepingTime/1000)+1) / 60:D2}:{(time - (sleepingTime/1000)+1) % 60:D2}";
 
             _cookController.StartCooking(power, time);
@@ -52,8 +53,8 @@ namespace Microwave.Test.Integration
         public void OnTimerExpired_Called_TurnOff()
         {
             int power = 100;
-            int time = 6000;
-            int sleepingTime = 7000;
+            int time = 3;
+            int sleepingTime = 4000;
             string expected = "PowerTube turned off";
 
             _cookController.StartCooking(power, time);

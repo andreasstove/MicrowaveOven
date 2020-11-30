@@ -46,7 +46,7 @@ namespace Microwave.Test.Unit
 
             uut.Expired += (sender, args) => pause.Set();
             uut.Start(2000);
-
+            //uut.Start(2);
             // wait for expiration, but not much longer, should come
             Assert.That(pause.WaitOne(2100));
         }
@@ -73,7 +73,7 @@ namespace Microwave.Test.Unit
             uut.TimerTick += (sender, args) => notifications++;
 
             uut.Start(2000);
-
+            //uut.Start(2);
             // wait longer than expiration
             Assert.That(pause.WaitOne(2100));
 
@@ -144,11 +144,12 @@ namespace Microwave.Test.Unit
                     pause.Set();
             };
             uut.Start(5000);
-
+            //uut.Start(5);
             // wait for ticks, only a little longer
             pause.WaitOne(ticks * 1000 + 100);
 
             Assert.That(uut.TimeRemaining, Is.EqualTo(5000-ticks*1000));
+            //Assert.That(uut.TimeRemaining, Is.EqualTo(5 - ticks * 1));
         }
     }
 }
