@@ -70,7 +70,7 @@ namespace Microwave.Test.Integration
             _powerButton.Press();
             _timeButton.Press();
             _cancelButton.Press();
-            StringAssert.Contains("50 W 1:00", _stringWriter.ToString());
+            StringAssert.Contains("50 W", _stringWriter.ToString());
         }
 
         [Test]
@@ -85,17 +85,5 @@ namespace Microwave.Test.Integration
             StringAssert.Contains("Display cleared", _stringWriter.ToString());
         }
 
-        [Test]
-        public void NotATestJustForHelp()
-        {
-            string expected = "Light is turned off";
-            _powerButton.Pressed += Raise.Event();
-            _light.TurnOn();
-            _stringWriter = new System.IO.StringWriter();
-            Console.SetOut(_stringWriter);
-            _cancelButton.Pressed += Raise.Event();
-
-            StringAssert.Contains(expected, _stringWriter.ToString());
-        }
     }
 }

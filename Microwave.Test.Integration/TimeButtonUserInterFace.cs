@@ -99,20 +99,5 @@ namespace Microwave.Test.Integration
             }
             StringAssert.Contains("61:00", _stringWriter.ToString());
         }
-
-
-
-        [Test]
-        public void NotATestJustForHelp()
-        {
-            string expected = "Light is turned off";
-            _powerButton.Pressed += Raise.Event();
-            _light.TurnOn();
-            _stringWriter = new System.IO.StringWriter();
-            Console.SetOut(_stringWriter);
-            _cancelButton.Pressed += Raise.Event();
-
-            StringAssert.Contains(expected, _stringWriter.ToString());
-        }
     }
 }
