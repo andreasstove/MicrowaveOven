@@ -43,45 +43,9 @@ namespace Microwave.Test.Integration
 
         }
         [Test]
-        public void OnStartCancelPressed_caseSetPower_TurnOff()
+        public void OnDoorOpened_CaseReady_TurnOn()
         {
-            string expected = "Light is turned off";
-            _powerButton.Pressed += Raise.Event();
-            _light.TurnOn();
-            _stringWriter = new System.IO.StringWriter();
-            Console.SetOut(_stringWriter);
-            _cancelButton.Pressed += Raise.Event();
-              
-            StringAssert.Contains(expected, _stringWriter.ToString());
-        }
-        [Test]
-        public void OnStartCancelPressed_caseSetTime_TurnOn()
-        {
-            string expected = "Light is turned on";
-            _powerButton.Pressed += Raise.Event();
-            _timeButton.Pressed += Raise.Event();
-            _stringWriter = new System.IO.StringWriter();
-            Console.SetOut(_stringWriter);
-            _cancelButton.Pressed += Raise.Event();
-
-            StringAssert.Contains(expected, _stringWriter.ToString());
-        }
-        [Test]
-        public void OnStartCancelPressed_caseCooking_TurnOff()
-        {
-            string expected = "Light is turned off";
-            _powerButton.Pressed += Raise.Event();
-            _timeButton.Pressed += Raise.Event();
-            _cancelButton.Pressed += Raise.Event();
-            _stringWriter = new System.IO.StringWriter();
-            Console.SetOut(_stringWriter);
-            _cancelButton.Pressed += Raise.Event();
-
-            StringAssert.Contains(expected, _stringWriter.ToString());
-        }
-        [Test]
-        public void OnDoorOpened_caseReady_TurnOn()
-        {
+            //Done
             string expected = "Light is turned on";
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
@@ -89,32 +53,11 @@ namespace Microwave.Test.Integration
 
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
-        [Test]
-        public void OnDoorOpened_caseSetPower_TurnOn()
-        {
-            string expected = "Light is turned on";
-            _powerButton.Pressed += Raise.Event();
-            _stringWriter = new System.IO.StringWriter();
-            Console.SetOut(_stringWriter);
-            _door.Opened += Raise.Event();
 
-            StringAssert.Contains(expected, _stringWriter.ToString());
-        }
         [Test]
-        public void OnDoorOpened_caseSetTime_TurnOn()
+        public void OnDoorClosed_CaseDoorOpen_TurnOff()
         {
-            string expected = "Light is turned on";
-            _powerButton.Pressed += Raise.Event();
-            _timeButton.Pressed += Raise.Event();
-            _stringWriter = new System.IO.StringWriter();
-            Console.SetOut(_stringWriter);
-            _door.Opened += Raise.Event();
-
-            StringAssert.Contains(expected, _stringWriter.ToString());
-        }
-        [Test]
-        public void OnDoorClosed_caseDoorOpen_TurnOff()
-        {
+            //Done
             string expected = "Light is turned off";
             _door.Opened += Raise.Event();
             _stringWriter = new System.IO.StringWriter();
@@ -123,9 +66,86 @@ namespace Microwave.Test.Integration
 
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
+        [Test]
+        public void OnDoorOpened_CaseSetPower_TurnOn()
+        {
+            //Usikker
+            string expected = "Light is turned on";
+            _door.Opened += Raise.Event();
+            _door.Closed += Raise.Event();
+            _powerButton.Pressed += Raise.Event();
+            _stringWriter = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter);
+            _door.Opened += Raise.Event();
+
+            StringAssert.DoesNotContain(expected, _stringWriter.ToString());
+        }
 
         [Test]
-        public void CookingIsDone_caseCooking_TurnOff()
+        public void OnStartCancelPressed_CaseSetTime_TurnOn()
+        {
+            //Done
+            string expected = "Light is turned on";
+            _door.Opened += Raise.Event();
+            _door.Closed += Raise.Event();
+            _powerButton.Pressed += Raise.Event();
+            _timeButton.Pressed += Raise.Event();
+            _stringWriter = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter);
+            _cancelButton.Pressed += Raise.Event();
+
+            StringAssert.Contains(expected, _stringWriter.ToString());
+        }
+
+        [Test]
+        public void OnStartCancelPressed_CaseSetPower_TurnOff()
+        {
+            //Done
+            string expected = "Light is turned on";
+            _door.Opened += Raise.Event();
+            _door.Closed += Raise.Event();
+            _powerButton.Pressed += Raise.Event();
+            _stringWriter = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter);
+            _cancelButton.Pressed += Raise.Event();
+              
+            StringAssert.DoesNotContain(expected, _stringWriter.ToString());
+        }
+        
+        [Test]
+        public void OnStartCancelPressed_CaseCooking_TurnOff()
+        {
+           //Done
+            string expected = "Light is turned off";
+            _door.Opened += Raise.Event();
+            _door.Closed += Raise.Event();
+            _powerButton.Pressed += Raise.Event();
+            _timeButton.Pressed += Raise.Event();
+            _cancelButton.Pressed += Raise.Event();
+            _stringWriter = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter);
+            _cancelButton.Pressed += Raise.Event();
+
+            StringAssert.Contains(expected, _stringWriter.ToString());
+        }
+        
+      
+        [Test]
+        public void OnDoorOpened_CaseSetTime_TurnOn()
+        {
+            string expected = "Light is turned on";
+            _powerButton.Pressed += Raise.Event();
+            _timeButton.Pressed += Raise.Event();
+            _stringWriter = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter);
+            _door.Opened += Raise.Event();
+
+            StringAssert.Contains(expected, _stringWriter.ToString());
+        }
+  
+
+        [Test]
+        public void CookingIsDone_CaseCooking_TurnOff()
         {
             string expected = "Light is turned off";
             _powerButton.Pressed += Raise.Event();
