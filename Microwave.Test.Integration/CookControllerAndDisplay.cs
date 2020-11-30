@@ -26,19 +26,16 @@ namespace Microwave.Test.Integration
             _powerTube = new PowerTube(_output);
             _display = new Display(_output);
             _timer = Substitute.For<ITimer>();
-            _cookController = new CookController(_timer, _display, _powerTube);
-
-            
+            _cookController = new CookController(_timer, _display, _powerTube);  
         }
-        //test
         [Test]
         public void OnTimerTick_called_myDisplay()
         {
             string expected = "Display shows: 02:00";
             int power = 50;
             int time = 120;
-            _cookController.StartCooking(power, time);
 
+            _cookController.StartCooking(power, time);
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
             _timer.TimeRemaining.Returns(120);

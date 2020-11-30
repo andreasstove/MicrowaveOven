@@ -12,11 +12,11 @@ namespace Microwave.Test.Integration
     [TestFixture]
     class PowerTubeAndCookController
     {
+        private Output _output;
         private CookController _cookController;
         private PowerTube _powerTube;
         private Display _display;
         private ITimer _timer;
-        private Output _output;
         private IUserInterface _userInterface;
         private System.IO.StringWriter _stringWriter;
         [SetUp]
