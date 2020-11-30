@@ -8,7 +8,6 @@ using NSubstitute;
 
 namespace Microwave.Test.Integration
 {
-    //Done
     class PowerTubeAndOutput
     {
         private Output output;
@@ -22,7 +21,7 @@ namespace Microwave.Test.Integration
             stringWriter = new System.IO.StringWriter();
             Console.SetOut(stringWriter);
         }
-        //test
+
         [Test]
         public void TestForTurnOn()
         {

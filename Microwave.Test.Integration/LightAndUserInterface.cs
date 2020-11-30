@@ -45,7 +45,6 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnDoorOpened_CaseReady_TurnOn()
         {
-            //Done
             string expected = "Light is turned on";
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
@@ -57,7 +56,6 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnDoorClosed_CaseDoorOpen_TurnOff()
         {
-            //Done
             string expected = "Light is turned off";
             _door.Opened += Raise.Event();
             _stringWriter = new System.IO.StringWriter();
@@ -69,7 +67,6 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnDoorOpened_CaseSetPower_TurnOn()
         {
-            //Done
             string expected = "Light is turned on";
             _door.Opened += Raise.Event();
             _door.Closed += Raise.Event();
@@ -87,8 +84,8 @@ namespace Microwave.Test.Integration
             _door.Opened += Raise.Event();
             _door.Closed += Raise.Event();
             _powerButton.Pressed += Raise.Event();
-            
             _timeButton.Pressed += Raise.Event();
+
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
             _door.Opened += Raise.Event();
@@ -99,7 +96,6 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnStartCancelPressed_CaseSetTime_TurnOn()
         {
-            //Done
             string expected = "Light is turned on";
             _door.Opened += Raise.Event();
             _door.Closed += Raise.Event();
@@ -115,7 +111,6 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnStartCancelPressed_CaseSetPower_TurnOff()
         {
-            //Done
             string expected = "Light is turned on";
             _door.Opened += Raise.Event();
             _door.Closed += Raise.Event();
@@ -130,7 +125,6 @@ namespace Microwave.Test.Integration
         [Test]
         public void OnStartCancelPressed_CaseCooking_TurnOff()
         {
-           //Done
             string expected = "Light is turned off";
             _door.Opened += Raise.Event();
             _door.Closed += Raise.Event();

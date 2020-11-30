@@ -6,7 +6,6 @@ using Microwave.Classes.Interfaces;
 using Microwave.Classes.Boundary;
 namespace Microwave.Test.Integration
 {
-    //Done
     [TestFixture]
     class OutputAndDisplay
     {
@@ -21,7 +20,6 @@ namespace Microwave.Test.Integration
             _stringWriter = new System.IO.StringWriter();
             Console.SetOut(_stringWriter);
         }
-        //test
         [Test]
         public void ShowTime_Called_OutputLine()
         {
@@ -31,11 +29,13 @@ namespace Microwave.Test.Integration
             _display.ShowTime(min, sec);
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
-        [Test]
-        public void ShowPower_Called_OutputLine()
+        [TestCase(50)]
+        [TestCase(500)]
+        [TestCase(700)]
+
+        public void ShowPower_Called_OutputLine(int power)
         {
-            int power = 20;
-            var expected = "Display shows: 20 W";
+            var expected = $"Display shows: {power} W";
             _display.ShowPower(power);
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
