@@ -62,9 +62,12 @@ namespace Microwave.Test.Integration
         [Test]
         public void DoorOpenedClosed()
         {
+            string expected = "Light is turned off";
             _door.Open();
+            System.IO.StringWriter _stringWriter1 = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter1);
             _door.Close();
-            StringAssert.Contains("Light is turned on", _stringWriter.ToString());
+            StringAssert.Contains(expected, _stringWriter1.ToString());
         }
 
         [Test]
