@@ -42,8 +42,8 @@ namespace Microwave.Test.Integration
         {
             int power = 100;
             int time = 10000;
-            int sleepingTime = 2000;
-            string expected = $"Display shows: {(time-(sleepingTime/1000)+1) / 60:D2}:{(time - (sleepingTime/1000)+1) % 60:D2}";
+            int sleepingTime = 2100;
+            string expected = $"Display shows: {(time-(sleepingTime/1000)) / 60:D2}:{(time - (sleepingTime/1000)) % 60:D2}";
 
             _cookController.StartCooking(power, time);
             Thread.Sleep(sleepingTime);

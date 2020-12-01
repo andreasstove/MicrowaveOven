@@ -49,11 +49,11 @@ namespace Microwave.Test.Integration
         {
             int power = 100;
             int time = 5000;
-            int sleepingTime = 2100;
+            int sleepingTime = 4000;
             _cookController.StartCooking(power, time);
             Thread.Sleep(sleepingTime);
             _cookController.Stop();
-            Thread.Sleep(21000);
+            Thread.Sleep(sleepingTime);
             int expected = time-(sleepingTime / 1000);
             Assert.That(_timer.TimeRemaining, Is.EqualTo(expected));
         }
