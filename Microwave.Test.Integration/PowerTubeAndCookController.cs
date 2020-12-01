@@ -30,9 +30,10 @@ namespace Microwave.Test.Integration
             _cookController = new CookController(_timer, _display, _powerTube, _userInterface);
             
         }
-        [TestCase(1)]
         [TestCase(50)]
         [TestCase(100)]
+        [TestCase(350)]
+        [TestCase(700)]
         public void StartCooking_Called_TurnOn(int power)
         {
             _stringWriter = new System.IO.StringWriter();
