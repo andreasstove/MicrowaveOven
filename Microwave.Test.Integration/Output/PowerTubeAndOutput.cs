@@ -25,13 +25,13 @@ namespace Microwave.Test.Integration
         [Test]
         public void TestForTurnOn()
         {
-            power.TurnOn(1);
-            StringAssert.Contains("PowerTube works with 1", stringWriter.ToString());
+            power.TurnOn(50);
+            StringAssert.Contains("PowerTube works with 50", stringWriter.ToString());
         }
         [Test]
         public void TestForTurnOnTurnOff()
         {
-            power.TurnOn(1);
+            power.TurnOn(50);
             power.TurnOff();
             StringAssert.Contains("PowerTube turned off", stringWriter.ToString());
         }
