@@ -45,11 +45,11 @@ namespace Microwave.Test.Integration
             Assert.That(_timer.TimeRemaining, Is.EqualTo(time));
         }
         [Test]
-        public void Stop_Called_Stop()
+        public void Stop_CookingController_Called_Stop_Timer()
         {
             int power = 100;
             int time = 5000;
-            int sleepingTime = 4000;
+            int sleepingTime = 4200;
             _cookController.StartCooking(power, time);
             Thread.Sleep(sleepingTime);
             _cookController.Stop();

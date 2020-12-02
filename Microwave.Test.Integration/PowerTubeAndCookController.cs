@@ -56,7 +56,7 @@ namespace Microwave.Test.Integration
             _cookController.Stop();
             StringAssert.Contains(expected, _stringWriter.ToString());
         }
-
+         
         [Test]
         public void OnTimerExpired_Called_TurnOff()
         {
