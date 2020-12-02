@@ -93,11 +93,14 @@ namespace Microwave.Test.Integration
             _door.Opened += Raise.Event();
             _door.Closed += Raise.Event();
             _powerButton.Press();
-            for (int i = 0; i < 61; i++)
+            for (int i = 0; i < 60; i++)
             {
                 _timeButton.Press();
             }
-            StringAssert.Contains("61:00", _stringWriter.ToString());
+            System.IO.StringWriter _stringWriter1 = new System.IO.StringWriter();
+            Console.SetOut(_stringWriter1);
+            _timeButton.Press();
+            StringAssert.Contains("01:00", _stringWriter1.ToString());
         }
     }
 }
